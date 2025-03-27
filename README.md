@@ -87,6 +87,7 @@ This app is suitable for deployment as a static site on GitHub Pages.
     *   Your site should be live shortly at the URL specified in `homepage`.
 
 6. **Deploy to Main branch (Optional)**
+        npm run deploy
         npm run build       # Creates the 'build' folder
         npm run clean-docs  # Removes old 'docs' folder (safety)
         npm run rename-build # Renames 'build' to 'docs'
