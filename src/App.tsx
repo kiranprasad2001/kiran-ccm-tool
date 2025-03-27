@@ -166,7 +166,7 @@ function App() {
 
     return (
         <div className="app-container">
-            <header className="app-header"><h1>CCM Tool</h1></header>
+            <header className="app-header"><h1>Customer Comminucation Management</h1></header>
 
             <main className="app-main">
                 <aside className="app-sidebar">
@@ -253,7 +253,7 @@ function App() {
             )}
              {/* --- End Modal --- */}
 
-            <footer className="app-footer"><p>© {new Date().getFullYear()} CCM Tool</p></footer>
+            <footer className="app-footer"><p>© {new Date().getFullYear()} Kiran Prasad</p></footer>
 
             {/* --- 2. Add ToastContainer (place once, often near the end) --- */}
             <ToastContainer

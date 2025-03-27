@@ -80,10 +80,19 @@ This app is suitable for deployment as a static site on GitHub Pages.
     yarn deploy
     ```
 
+
 5.  **Configure GitHub Repository:**
     *   Go to Repository Settings -> Pages.
     *   Set the source branch to `gh-pages` and the folder to `/ (root)`.
     *   Your site should be live shortly at the URL specified in `homepage`.
+
+6. **Deploy to Main branch (Optional)**
+        npm run build       # Creates the 'build' folder
+        npm run clean-docs  # Removes old 'docs' folder (safety)
+        npm run rename-build # Renames 'build' to 'docs'
+        git add docs        # Stage the new docs folder
+        git commit -m "Update production build in /docs"
+        git push origin main # Push main branch including the /docs folder
 
 ## Contributing
 

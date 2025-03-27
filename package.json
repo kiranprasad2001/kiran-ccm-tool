@@ -32,8 +32,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "clean-docs": "rimraf ./docs",
+    "rename-build": "mv build docs",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run clean-docs && npm run rename-build && git add docs && git commit -m \"Deploy latest build to /docs\" && git push"
   },
   "eslintConfig": {
     "extends": [
