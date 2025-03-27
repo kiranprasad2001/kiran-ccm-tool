@@ -1,46 +1,94 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+*   Node.js (version 16.x or higher recommended)
+*   npm (version 8.x or higher) or yarn
+
+### Installation & Running Locally
+
+1.  **Clone the repository (if applicable):**
+    ```bash
+    git clone <your-repository-url>
+    cd ccm-tool
+    ```
+    *(If you received the code directly, just navigate to the project directory)*
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+    or
+    ```bash
+    yarn install
+    ```
+
+3.  **Start the development server:**
+    ```bash
+    npm start
+    ```
+    or
+    ```bash
+    yarn start
+    ```
+    This will run the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser. The page will automatically reload if you make changes to the code.
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+*   `npm start` / `yarn start`: Runs the app in development mode.
+*   `npm run build` / `yarn build`: Builds the app for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance.
+*   `npm test` / `yarn test`: Launches the test runner in interactive watch mode (if tests are configured).
+*   `npm run eject` / `yarn eject`: **Note:** this is a one-way operation. Once you eject, you can't go back! It copies all configuration files and transitive dependencies into your project so you have full control over them. Use with caution.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Deployment to GitHub Pages (Optional)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This app is suitable for deployment as a static site on GitHub Pages.
 
-### `npm test`
+1.  **Set `homepage` in `package.json`:**
+    Update the `homepage` field with your GitHub Pages URL:
+    ```json
+    "homepage": "https://<your-github-username>.github.io/<your-repository-name>"
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2.  **Install `gh-pages`:**
+    ```bash
+    npm install --save-dev gh-pages
+    # or
+    yarn add --dev gh-pages
+    ```
 
-### `npm run build`
+3.  **Add Deploy Scripts:**
+    Add `predeploy` and `deploy` scripts to your `package.json`:
+    ```json
+     "scripts": {
+       // ... other scripts
+       "predeploy": "npm run build",
+       "deploy": "gh-pages -d build"
+     }
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4.  **Deploy:**
+    Commit your changes and run:
+    ```bash
+    npm run deploy
+    # or
+    yarn deploy
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5.  **Configure GitHub Repository:**
+    *   Go to Repository Settings -> Pages.
+    *   Set the source branch to `gh-pages` and the folder to `/ (root)`.
+    *   Your site should be live shortly at the URL specified in `homepage`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contributing
 
-### `npm run eject`
+(In Progress)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## License
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Private

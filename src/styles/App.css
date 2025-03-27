@@ -1,0 +1,292 @@
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.app-header {
+    background-color: #282c34;
+    padding: 10px 20px;
+    color: white;
+    text-align: center;
+}
+
+.app-main {
+    display: flex;
+    flex-grow: 1;
+    padding: 20px;
+    gap: 20px; /* Space between sidebar and content */
+}
+
+.app-sidebar {
+    width: 300px; /* Fixed width */
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: fit-content; /* Adjust height based on content */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between sections in sidebar */
+}
+
+.app-content {
+    flex-grow: 1; /* Takes remaining space */
+    display: flex;
+    flex-direction: column;
+}
+
+.document-preview-container {
+    flex-grow: 1;
+    margin-bottom: 20px;
+    display: flex; /* Allow content to grow */
+    flex-direction: column;
+}
+
+/* The overall area that gets printed/PDF'd */
+.document-render-area {
+    border: 1px solid #eee;
+    padding: 25px; /* More padding */
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex-grow: 1; /* Allow this area to take up space */
+    display: flex; /* Arrange header, editor, footer vertically */
+    flex-direction: column;
+    font-size: 11pt; /* Default font size */
+    line-height: 1.5;
+}
+
+.preview-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee; /* Separator */
+}
+.preview-header h1 {
+    font-size: 1.5em; /* Adjust as needed */
+    margin-bottom: 15px;
+}
+.preview-header p {
+    margin-bottom: 5px;
+    font-size: 0.95em;
+    color: #333;
+}
+
+.preview-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee; /* Separator */
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Quill Editor Specific Styles */
+.quill-editor-component {
+    flex-grow: 1; /* Allow editor to fill space */
+    display: flex; /* Needed for internal Quill structure */
+    flex-direction: column;
+}
+.ql-container.ql-snow {
+    border: none; /* Remove Quill's border if render-area has one */
+    flex-grow: 1; /* Allow container to grow */
+    font-size: inherit; /* Inherit font size from parent */
+}
+.ql-editor {
+    min-height: 300px; /* Ensure space for typing */
+    background-color: #fff; /* Ensure white background */
+    color: #222; /* Editor text color */
+    padding: 0; /* Remove padding if render-area already has it */
+    line-height: inherit; /* Inherit line height */
+    font-family: inherit; /* Inherit font family */
+}
+
+.action-buttons {
+    text-align: right;
+    margin-top: 15px;
+}
+
+.app-footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: auto; /* Pushes footer down */
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .app-main {
+        flex-direction: column;
+    }
+    .app-sidebar {
+        width: 100%; /* Full width on small screens */
+        margin-bottom: 20px;
+    }
+}
+
+/* Default (also applies if no template class) */
+.document-render-area.template-default {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Formal Letter Template */
+.document-render-area.template-letter {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    padding: 40px; /* More padding for letters */
+}
+.document-render-area.template-letter .preview-header h1 {
+    text-align: center;
+    font-size: 1.2em; /* Often less prominent in letters */
+    margin-bottom: 30px;
+}
+
+/* Invoice Template */
+.document-render-area.template-invoice {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10pt;
+}
+.document-render-area.template-invoice .preview-header {
+    /* Maybe different layout for invoice headers */
+}
+/* Add styles for tables common in invoices */
+.document-render-area.template-invoice .ql-editor table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+.document-render-area.template-invoice .ql-editor th,
+.document-render-area.template-invoice .ql-editor td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+.document-render-area.template-invoice .ql-editor th {
+    background-color: #f2f2f2;
+}
+
+/* Internal Memo Template */
+.document-render-area.template-memo {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11pt;
+    padding: 20px;
+}
+.document-render-area.template-memo .preview-header {
+    border-bottom: 2px solid #333;
+}
+.document-render-area.template-memo .preview-header h1 {
+    text-transform: uppercase;
+    font-size: 1.6em;
+    text-align: center;
+}
+.document-render-area.template-memo .preview-header p {
+    font-weight: bold;
+}
+
+/* Styles for CommonSectionsPanel */
+.common-sections-panel {
+    /* Add any container styles if needed */
+}
+
+.common-sections-panel h3 {
+    margin-bottom: 10px; /* Example */
+}
+
+.common-sections-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.common-sections-panel li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+.common-sections-panel li span {
+    flex-grow: 1;
+    margin-right: 10px;
+    font-size: 0.95em;
+}
+/* Style the button within the list item */
+.common-sections-panel li button {
+    padding: 3px 8px;
+    font-size: 0.85em;
+    background-color: #e0e0e0;
+    color: #333;
+    border: none; /* Overwrite default button border if needed */
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 10px; /* Add space between title and button */
+}
+.common-sections-panel li button:hover {
+    background-color: #d0d0d0;
+}
+
+/* --- Save/Load Actions --- */
+.save-load-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+.save-load-actions button {
+    flex: 1; /* Make buttons share space */
+}
+
+
+/* --- Simple Modal Styles --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.modal-content {
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    min-width: 400px; /* Minimum width */
+    max-width: 600px; /* Maximum width */
+    max-height: 80vh; /* Limit height */
+    overflow-y: auto; /* Allow scrolling if list is long */
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.modal-content li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px;
+    border-bottom: 1px solid #eee;
+}
+.modal-content li span {
+    margin-right: 15px;
+    font-size: 0.95em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%; /* Prevent long subjects from breaking layout */
+}
+.modal-content li div button { /* Target buttons inside the div */
+     padding: 5px 10px;
+     font-size: 0.9em;
+}

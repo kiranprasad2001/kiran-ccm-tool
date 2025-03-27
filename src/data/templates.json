@@ -1,0 +1,14 @@
+[
+    {
+      "id": "letter",
+      "name": "Formal Letter",
+      "component": "StandardLetterTemplate", 
+      "styleClass": "template-letter"
+    },
+    {
+      "id": "poa_revocation",
+      "name": "POA Revocation",
+      "component": "POARevocationTemplate", 
+      "styleClass": "template-poa"
+    }
+  ]

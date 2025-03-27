@@ -1,0 +1,5 @@
+[
+    { "id": "intro-formal", "title": "Formal Introduction", "content": "<p>Dear [Recipient Name],</p><p>I am writing to you regarding...</p>" },
+    { "id": "closing-standard", "title": "Standard Closing", "content": "<p>Thank you for your time and consideration.</p><p>Sincerely,</p><p>[Your Name]</p>" },
+    { "id": "invoice-terms", "title": "Invoice Payment Terms", "content": "<p>Payment is due within 30 days of the invoice date.</p>" }
+  ]
