@@ -1,14 +1,18 @@
 [
     {
-      "id": "letter",
-      "name": "Formal Letter",
-      "component": "StandardLetterTemplate", 
-      "styleClass": "template-letter"
+      "id": "pers_letter",
+      "lobId": "personal",
+      "name": "Personal - Formal Letter",
+      "component": "StandardLetterTemplate",
+      "styleClass": "template-letter",
+      "usesQuill": true
     },
     {
-      "id": "poa_revocation",
-      "name": "POA Revocation",
-      "component": "POARevocationTemplate", 
-      "styleClass": "template-poa"
+      "id": "pers_account_update",
+      "lobId": "personal",
+      "name": "Personal - Account Update Form",
+      "component": "AccountUpdateTemplate",
+       "styleClass": "template-form",
+      "hasSpecificFields": true
     }
-  ]
+]

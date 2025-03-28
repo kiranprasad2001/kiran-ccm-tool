@@ -1,0 +1,4 @@
+[
+    { "id": "personal", "name": "Personal Banking" },
+    { "id": "business", "name": "Business Lending" }
+]

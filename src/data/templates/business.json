@@ -1,0 +1,34 @@
+[
+    {
+     "id": "biz_letter",
+     "lobId": "business",
+     "name": "Business - Formal Letter",
+     "component": "StandardLetterTemplate",
+     "styleClass": "template-letter",
+     "usesQuill": true
+   },
+   {
+     "id": "biz_loan_offer",
+     "lobId": "business",
+     "name": "Business - Loan Offer",
+     "component": "LoanOfferTemplate",
+      "styleClass": "template-offer",
+     "hasSpecificFields": true
+   },
+   {
+     "id": "biz_poa_revocation",
+     "lobId": "business",
+     "name": "Business - POA Revocation",
+     "component": "POARevocationTemplate",
+     "styleClass": "template-poa",
+     "hasSpecificFields": true
+   },
+   {
+      "id": "emp_app_ds174",
+      "lobId": "business",
+      "name": "Employment Application (DS-174 Style)",
+      "component": "EmploymentApplicationTemplate",
+      "styleClass": "template-form-table",
+      "hasSpecificFields": false
+    }
+ ]

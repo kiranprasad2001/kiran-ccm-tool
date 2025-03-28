@@ -1,12 +1,13 @@
-import { DocumentState, DocumentData, Template } from '../types';
+//import { DocumentState, DocumentData, Template } from '../types';
+import { SavedDocumentData, SavedDocument, LOB, Template, DocumentData } from '../types'; // <-- Import the new types
 
 const STORAGE_KEY = 'ccmToolDocuments';
 
 // Type for the data we store for a single saved document
-export interface SavedDocument extends DocumentState {
+/* export interface SavedDocument extends DocumentState {
     id: string; // Unique ID for the saved document
     savedAt: number; // Timestamp
-}
+} */
 
 // Type for the overall structure in localStorage
 interface StorageData {
@@ -30,7 +31,7 @@ export const loadDocumentsFromStorage = (): SavedDocument[] => {
 };
 
 // Helper to save the current document state
-export const saveDocumentToStorage = (currentState: DocumentState): SavedDocument | null => {
+export const saveDocumentToStorage = (currentState: SavedDocumentData): SavedDocument | null => {
     try {
         const existingDocuments = loadDocumentsFromStorage();
         const newDocument: SavedDocument = {

@@ -233,6 +233,10 @@
     flex: 1; /* Make buttons share space */
 }
 
+/* Utility class to hide elements during print/pdf generation */
+.print-hide {
+    display: none !important; /* Use !important to override other styles */
+}
 
 /* --- Simple Modal Styles --- */
 .modal-overlay {
@@ -289,4 +293,141 @@
 .modal-content li div button { /* Target buttons inside the div */
      padding: 5px 10px;
      font-size: 0.9em;
+}
+
+/* --- Styles for Table-Based Forms --- */
+.template-form-table {
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.4;
+}
+
+.template-form-table .form-section-header {
+    background-color: #e0e0e0;
+    padding: 4px 8px;
+    font-size: 1.1em;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 0;
+    border: 1px solid #ccc;
+    border-bottom: none;
+}
+
+.template-form-table .form-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+
+.template-form-table th,
+.template-form-table td {
+    border: 1px solid #ccc;
+    padding: 6px 8px;
+    vertical-align: top; /* Align content to top */
+}
+
+.template-form-table label {
+    display: block;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-bottom: 3px;
+}
+
+/* Styling for inputs WITHIN the table for SCREEN view */
+.template-form-table input[type="text"],
+.template-form-table input[type="date"],
+.template-form-table input[type="email"],
+.template-form-table input[type="tel"],
+.template-form-table input[type="number"],
+.template-form-table textarea {
+    width: 98%; /* Slightly less than 100% to avoid overflow */
+    padding: 4px 6px;
+    border: 1px solid #d0d0d0;
+    border-radius: 3px;
+    font-size: 1em; /* Inherit from table cell */
+    font-family: inherit;
+    box-sizing: border-box; /* Include padding/border in width */
+}
+.template-form-table textarea {
+    resize: vertical; /* Allow vertical resize */
+    min-height: 40px;
+}
+
+.template-form-table .radio-group label {
+    display: inline-block;
+    margin-right: 15px;
+    font-weight: normal;
+}
+.template-form-table .radio-group input[type="radio"] {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+
+/* --- PRINT STYLES for Table Form --- */
+@media print {
+    /* Hide elements not needed for print */
+    .app-sidebar,
+    .app-header,
+    .app-footer,
+    .action-buttons,
+    .save-load-actions,
+    .modal-overlay { /* Ensure modal isn't printed */
+        display: none !important;
+    }
+
+    .app-main {
+        display: block; /* Reset flex layout */
+    }
+    .app-content {
+        margin: 0;
+        padding: 0;
+    }
+
+    .document-render-area {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important; /* Adjust as needed for print margins */
+        font-size: 9pt; /* Example: slightly smaller for print */
+    }
+
+    /* Style inputs to look like static text */
+    .template-form-table input[type="text"],
+    .template-form-table input[type="date"],
+    .template-form-table input[type="email"],
+    .template-form-table input[type="tel"],
+    .template-form-table input[type="number"],
+    .template-form-table textarea {
+        border: none;
+        background-color: transparent;
+        padding: 0; /* Remove padding */
+        margin: 0; /* Remove margin */
+        box-shadow: none;
+        border-radius: 0;
+        width: auto; /* Let table cell control width */
+        min-height: unset;
+    }
+    .template-form-table textarea {
+         resize: none; /* Disable resize for print */
+         overflow: visible; /* Show all content */
+    }
+
+     /* Style radio/checkboxes for print (trickier) */
+     /* Option 1: Hide the input, show checked status visually */
+    .template-form-table .radio-group input[type="radio"] {
+        /* appearance: none; */ /* Might work in some browsers */
+        /* display: none; */ /* Hide completely */
+    }
+      /* Add pseudo-elements or borders to labels based on checked state if needed */
+      /* This requires more complex CSS or JS interaction */
+
+     /* Option 2: Just let the browser render them (might look like interactive elements) */
+
+
+    /* Ensure colors print if needed */
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
 }

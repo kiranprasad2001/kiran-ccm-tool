@@ -1,24 +1,56 @@
-import React, { createContext, useState, useContext, ReactNode, useCallback } from 'react';
-import { DocumentState, DocumentContextProps, DocumentData, Template } from '../types';
+import React, { createContext, useState, useContext, ReactNode, useCallback, useEffect } from 'react';
+import { DocumentState, DocumentContextProps, DocumentData, Template, LOB } from '../types';
 
+// Import LOB data
+import lobsData from '../data/lobs.json'; // <-- Import the JSON data
+
+import personalTemplates from '../data/templates/personal.json';
+import businessTemplates from '../data/templates/business.json';
+
+const allTemplatesData: Template[] = [
+    ...personalTemplates,
+    ...businessTemplates,
+    // ...wealthTemplates,
+] as Template[]; // Assert type
+
+// --- Default State ---
 const defaultState: DocumentState = {
     formData: { subject: '', recipientName: '' },
-    editorContent: '<p>Start writing your document...</p>',
+    editorContent: '<p>Start writing...</p>',
     selectedTemplate: null,
     templateData: {},
+    lobs: [], // Will be loaded
+    selectedLOB: null,
+    allTemplates: [], // Will be loaded
+    searchTerm: '',
 };
 
 const DocumentContext = createContext<DocumentContextProps | undefined>(undefined);
 
-interface DocumentProviderProps {
-    children: ReactNode;
-}
-
-export const DocumentProvider: React.FC<DocumentProviderProps> = ({ children }) => {
+// --- Provider ---
+export const DocumentProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [formData, setFormData] = useState<DocumentData>(defaultState.formData);
     const [editorContent, setEditorContent] = useState<string>(defaultState.editorContent);
     const [selectedTemplate, setSelectedTemplateState] = useState<Template | null>(defaultState.selectedTemplate);
     const [templateData, setTemplateData] = useState<Record<string, any>>(defaultState.templateData);
+    const [lobs, setLobs] = useState<LOB[]>(defaultState.lobs);
+    const [selectedLOB, setSelectedLOBState] = useState<LOB | null>(defaultState.selectedLOB);
+    const [allTemplates, setAllTemplates] = useState<Template[]>(defaultState.allTemplates);
+    const [searchTerm, setSearchTermState] = useState<string>(defaultState.searchTerm);
+
+    // --- Load initial data ---
+    useEffect(() => {
+        // Load LOBs (sync for now, could be async)
+        setLobs(lobsData as LOB[]);
+        // Load all templates (sync for now)
+        setAllTemplates(allTemplatesData);
+        // Optionally select a default LOB?
+        // setSelectedLOBState(lobsData[0] as LOB);
+    }, []);
+
+interface DocumentProviderProps {
+    children: ReactNode;
+}
 
     const updateFormData = useCallback((data: Partial<DocumentData>) => {
         setFormData(prevData => ({ ...prevData, ...data }));
@@ -28,49 +60,60 @@ export const DocumentProvider: React.FC<DocumentProviderProps> = ({ children }) 
         setTemplateData(prevData => ({ ...prevData, [fieldId]: value }));
     }, []);
 
+    const setSelectedLOB = useCallback((lob: LOB | null) => {
+        setSelectedLOBState(lob);
+        setSelectedTemplateState(null); // Reset template when LOB changes
+        setTemplateData({}); // Reset specific data
+        setSearchTermState(''); // Reset search term
+    }, []);
+
+    const setSearchTerm = useCallback((term: string) => {
+        setSearchTermState(term);
+    }, []);
+
     const setSelectedTemplate = useCallback((template: Template | null) => {
         setSelectedTemplateState(template);
-        // Reset specific and editor data when template changes
-        setTemplateData({});
-        // Only reset editorContent if the *new* template isn't expected to use it
-        // This logic depends on how you define which templates use Quill
-        // For now, let's clear it unless it's the 'letter' template
-        if (template?.id !== 'letter') {
-           setEditorContent('');
+        setTemplateData({}); // Reset specific data
+        // Reset editor content if new template doesn't use Quill
+        if (!template?.usesQuill) {
+            setEditorContent('');
         } else if (editorContent === '') {
-            setEditorContent('<p>Start writing your document...</p>'); // Reset if switching back to letter
+             setEditorContent('<p>Start writing...</p>');
         }
-    }, [editorContent]); // Dependency on editorContent
+    }, [editorContent]); // editorContent dependency  
 
     // insertSection only makes sense for Quill-based templates
     const insertSection = useCallback((content: string) => {
-        // Only allow insert if the current template is the 'letter' template (or others using Quill)
-        if (selectedTemplate?.id === 'letter') {
+        // Only allow insert if the current template uses Quill
+        if (selectedTemplate?.usesQuill) {
              setEditorContent(prevContent => prevContent + content);
         } else {
              console.warn("Cannot insert common section into this template type.");
         }
-    }, [selectedTemplate]);
+    }, [selectedTemplate]); // selectedTemplate dependency
 
 
+    // --- Context Value ---
     const value: DocumentContextProps = {
         formData,
         editorContent,
         selectedTemplate,
         templateData,
+        lobs,
+        selectedLOB,
+        allTemplates,
+        searchTerm,
         updateFormData,
         setEditorContent,
         setSelectedTemplate,
         insertSection,
         updateTemplateData,
-        setTemplateData, // Pass the direct setter
+        setTemplateData,
+        setSelectedLOB,
+        setSearchTerm,
     };
 
-    return (
-        <DocumentContext.Provider value={value}>
-            {children}
-        </DocumentContext.Provider>
-    );
+    return <DocumentContext.Provider value={value}>{children}</DocumentContext.Provider>;
 };
 
 export const useDocument = (): DocumentContextProps => {

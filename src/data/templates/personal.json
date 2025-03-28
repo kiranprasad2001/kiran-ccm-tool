@@ -1,0 +1,34 @@
+[
+    {
+     "id": "per_letter",
+     "lobId": "personal",
+     "name": "Personal - Formal Letter",
+     "component": "StandardLetterTemplate",
+     "styleClass": "template-letter",
+     "usesQuill": true
+   },
+   {
+     "id": "per_loan_offer",
+     "lobId": "personal",
+     "name": "Personal - Loan Offer",
+     "component": "LoanOfferTemplate",
+      "styleClass": "template-offer",
+     "hasSpecificFields": true
+   },
+   {
+     "id": "per_poa_revocation",
+     "lobId": "personal",
+     "name": "Personal - POA Revocation",
+     "component": "POARevocationTemplate",
+     "styleClass": "template-poa",
+     "hasSpecificFields": true
+   },
+   {
+      "id": "emp_app_ds174",
+      "lobId": "personal",
+      "name": "Employment Application (DS-174 Style)",
+      "component": "EmploymentApplicationTemplate",
+      "styleClass": "template-form-table",
+      "hasSpecificFields": false
+    }
+ ]

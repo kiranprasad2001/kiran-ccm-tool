@@ -1,5 +1,22 @@
 import React from 'react';
 
+// --- NEW LOB Type ---
+export interface LOB {
+    id: string; // e.g., 'personal_banking', 'business_lending'
+    name: string; // e.g., 'Personal Banking', 'Business Lending'
+}
+
+// --- Template Definition (remains simple) ---
+export interface Template {
+    id: string;
+    lobId: string; // <-- Associate template with an LOB
+    name: string;
+    component: string;
+    styleClass?: string;
+    hasSpecificFields?: boolean; // Optional flag to trigger TemplateSpecificForm
+    usesQuill?: boolean; // Optional flag for templates using the editor
+}
+
 // TemplateField interface here
 export interface TemplateField {
     id: string; // Will be the key in templateData
@@ -15,19 +32,27 @@ export interface DocumentData { // General/common fields
     // Add other common fields if needed
 }
 
-export interface Template {
-    id: string;
-    name: string;
-    component: string; // Identifier for the component to load
-    styleClass?: string;
+// DocumentState includes runtime state like LOBs, search term etc.
+export interface DocumentState extends SavedDocumentData { // Extends the data part
+    // Runtime state:
+    lobs: LOB[];
+    selectedLOB: LOB | null;
+    allTemplates: Template[];
+    searchTerm: string;
 }
 
-// State holds generic data + specific data for the active template
-export interface DocumentState {
-    formData: DocumentData;         // General data
-    editorContent: string;        // Only used by templates that render Quill (like StandardLetter)
-    selectedTemplate: Template | null;
-    templateData: Record<string, any>; // Holds data for the *active* template's fields
+// --- Data needed to SAVE/LOAD a specific document instance ---
+export interface SavedDocumentData {
+    formData: DocumentData;
+    editorContent: string;
+    selectedTemplate: Template | null; // Save the template definition used
+    templateData: Record<string, any>;
+}
+
+// --- Structure stored in localStorage ---
+export interface SavedDocument extends SavedDocumentData { // Extends the data part
+    id: string;
+    savedAt: number;
 }
 
 export interface DocumentContextProps extends DocumentState {
@@ -37,6 +62,9 @@ export interface DocumentContextProps extends DocumentState {
     insertSection: (content: string) => void; // Still potentially useful for Quill templates
     updateTemplateData: (fieldId: string, value: any) => void;
     setTemplateData: (data: Record<string, any>) => void;
+    setSelectedLOB: (lob: LOB | null) => void;
+    setSearchTerm: (term: string) => void;
+    // No setter for lobs/allTemplates needed if loaded once
 }
 
 // --- Prop type for Template Components ---
