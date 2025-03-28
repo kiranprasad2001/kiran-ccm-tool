@@ -33,7 +33,7 @@ const EmploymentApplicationTemplate: React.FC<TemplateComponentProps> = ({ print
 
             {/* --- Header Section --- */}
             <div style={{ textAlign: 'center', marginBottom: '15px' }}>
-                <img src="/path/to/us-seal-logo.png" alt="US Seal" style={{ width: '80px', marginBottom: '10px' }} /> {/* Add logo */}
+                <img src="/kiran-ccm-tool/logo192.png" alt="US Seal" style={{ width: '80px', marginBottom: '10px' }} /> {/* Add logo */}
                 <h3>U.S. Mission</h3>
                 <h4>APPLICATION FOR EMPLOYMENT AS A LOCALLY EMPLOYED STAFF OR FAMILY MEMBER</h4>
                 <p style={{ fontSize: '0.8em' }}>(This application is for positions recruited by the U.S. Mission...)</p>
