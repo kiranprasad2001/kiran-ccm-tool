@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/kiran-ccm-tool/static/css/main.9b8c49c7.css",
-    "main.js": "/kiran-ccm-tool/static/js/main.3e188274.js",
+    "main.js": "/kiran-ccm-tool/static/js/main.cc72dbe7.js",
     "static/js/168.2704ae15.chunk.js": "/kiran-ccm-tool/static/js/168.2704ae15.chunk.js",
     "static/js/347.3100445e.chunk.js": "/kiran-ccm-tool/static/js/347.3100445e.chunk.js",
-    "static/js/283.b54c1884.chunk.js": "/kiran-ccm-tool/static/js/283.b54c1884.chunk.js",
+    "static/js/283.4bb3bc00.chunk.js": "/kiran-ccm-tool/static/js/283.4bb3bc00.chunk.js",
     "static/js/977.3d192f15.chunk.js": "/kiran-ccm-tool/static/js/977.3d192f15.chunk.js",
     "static/js/732.ac8cdce2.chunk.js": "/kiran-ccm-tool/static/js/732.ac8cdce2.chunk.js",
     "static/css/947.be77114e.chunk.css": "/kiran-ccm-tool/static/css/947.be77114e.chunk.css",
     "index.html": "/kiran-ccm-tool/index.html",
     "main.9b8c49c7.css.map": "/kiran-ccm-tool/static/css/main.9b8c49c7.css.map",
-    "main.3e188274.js.map": "/kiran-ccm-tool/static/js/main.3e188274.js.map",
+    "main.cc72dbe7.js.map": "/kiran-ccm-tool/static/js/main.cc72dbe7.js.map",
     "168.2704ae15.chunk.js.map": "/kiran-ccm-tool/static/js/168.2704ae15.chunk.js.map",
     "347.3100445e.chunk.js.map": "/kiran-ccm-tool/static/js/347.3100445e.chunk.js.map",
-    "283.b54c1884.chunk.js.map": "/kiran-ccm-tool/static/js/283.b54c1884.chunk.js.map",
+    "283.4bb3bc00.chunk.js.map": "/kiran-ccm-tool/static/js/283.4bb3bc00.chunk.js.map",
     "732.ac8cdce2.chunk.js.map": "/kiran-ccm-tool/static/js/732.ac8cdce2.chunk.js.map",
     "947.be77114e.chunk.css.map": "/kiran-ccm-tool/static/css/947.be77114e.chunk.css.map"
   },
   "entrypoints": [
     "static/css/main.9b8c49c7.css",
-    "static/js/main.3e188274.js"
+    "static/js/main.cc72dbe7.js"
   ]
 }
