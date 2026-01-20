@@ -1,7 +1,6 @@
 {
   "name": "kiran-ccm-tool",
   "version": "0.1.0",
-  "homepage": "https://kiranprasad2001.github.io/kiran-ccm-tool",
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
@@ -32,9 +31,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "clean-docs": "rimraf ./docs",
-    "rename-build": "mv build docs",
-    "predeploy": "npm run build",
     "deploy": "npm run clean-docs && npm run rename-build && git add docs && git commit -m \"Deploy latest build to /docs\" && git push"
   },
   "eslintConfig": {
